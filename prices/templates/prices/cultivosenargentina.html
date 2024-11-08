@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultivos en Argentina</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            background-image: url("{% static 'prices/images/maize.jpg' %}");
+            background-size: cover;
+            background-attachment: fixed;
+            height: 100vh; /* Asegura que el fondo cubra toda la pantalla */
+            margin: 0; /* Elimina el margen por defecto */
+        }
+        h1 {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%; /* Ocupa toda la altura de la pantalla */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5 options-container">
+        <h1>Cultivos en Argentina</h1>
+        <ul class="list-unstyled text-center">
+            <li>
+                <a href="{% url 'maiz_cultivo' %}" class="btn btn-secondary mb-3">Maíz</a>
+            </li>
+            <li>
+                <a href="{% url 'soja_cultivo' %}" class="btn btn-secondary mb-3">Soja</a>
+            </li>
+            <li>
+                <a href="{% url 'girasol_cultivo' %}" class="btn btn-secondary mb-3">Girasol</a>
+            </li>
+            <li>
+                <a href="{% url 'trigo_cultivo' %}" class="btn btn-secondary mb-3">Trigo</a>
+            </li>
+        </ul>
+        <div class="text-center">
+            <h2>Fuente:MAGyPA , Datasets</h2>
+        </div>
+
+        <div class="text-center">
+            <a href="{% url 'main_view' %}" class="btn btn-secondary mb-3">Volver a la página principal</a>
+        </div>
+    </div>
+</body>
+</html>

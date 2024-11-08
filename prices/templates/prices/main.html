@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producción y precios agrícolas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            background-image: url("{% static 'prices/images/fondoprincipal.jpg' %}");
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        h1 {
+            margin: 20px 0;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            color: #28a745;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .options-container {
+            margin-top: 20px;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #28a745;
+        }
+        .navbar-nav .nav-link {
+            color: #28a745;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Agriculture Tracker</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <span class="navbar-text mr-3">
+                                Bienvenido, {{ user.email }}
+                            </span>
+                        </li>
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link nav-link">Cerrar sesión</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login_or_register' %}?action=login">Iniciar sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login_or_register' %}?action=register">Registrarse</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Bienvenido al monitor de producción y precios agrícolas</h1>
+        <div class="options-container">
+            <ul class="list-unstyled">
+                <li>
+                    <a href="{% url 'mostrar_precios' %}" class="btn btn-primary mb-3">Precios de cultivos mundiales</a>
+                </li>
+                <li>
+                    <a href="{% url 'cultivosenargentina' %}" class="btn btn-secondary mb-3">Cultivos en Argentina</a>
+                </li>
+                <li>
+                    <a href="{% url 'grafico_todos_precios' %}" class="btn btn-info mb-3">Ver Gráficas de todos los países y productos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

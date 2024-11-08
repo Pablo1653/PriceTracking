@@ -1,0 +1,153 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9; /* O puedes cambiarlo por un color sólido, por ejemplo #e0e0e0 */
+            background-image: url("{% static 'prices/images/trigo.jpg' %}"); /* Si prefieres una imagen de fondo */
+            background-size: cover;  /* Asegura que la imagen cubra toda la pantalla */
+            background-position: center;  /* Centra la imagen */
+            background-attachment: fixed;  /* Hace que la imagen no se desplace cuando se hace scroll */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group input:focus {
+            border-color: #5c9dff;
+            outline: none;
+        }
+        .form-group .error {
+            color: red;
+            font-size: 12px;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #5c9dff;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #4a83d2;
+        }
+        .form-group .switch-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .form-group .switch-link a {
+            color: #5c9dff;
+            text-decoration: none;
+        }
+        .form-group .switch-link a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="error-message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    
+
+        {% if action == 'login' %}
+            <h2>Iniciar sesión</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form_login %}
+                    <div class="form-group">
+                        {{ field.label_tag }}<br>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="error">
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div class="form-group">
+                    <button type="submit">Iniciar sesión</button>
+                </div>
+            </form>
+            <div class="switch-link">
+                ¿No tienes cuenta? <a href="?action=register">Regístrate aquí</a>
+            </div>
+        {% elif action == 'register' %}
+            <h2>Registrar cuenta</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form_register %}
+                    <div class="form-group">
+                        {{ field.label_tag }}<br>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="error">
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div class="form-group">
+                    <button type="submit">Registrar</button>
+                </div>
+            </form>
+            <div class="switch-link">
+                ¿Ya tienes cuenta? <a href="?action=login">Inicia sesión aquí</a>
+            </div>
+        {% endif %}
+    </div>
+</body>
+
+
+</html>
