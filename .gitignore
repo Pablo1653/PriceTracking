@@ -1,11 +1,40 @@
-# Ignorar el directorio de caché de Python
+# Python
 __pycache__/
 *.pyc
-
-# Ignorar el entorno virtual (venv)
+*.pyo
+*.pyd
+.Python
+env/
 venv/
+ENV/
+*.env
+*.venv
 
-# Otros archivos comunes que podrías querer ignorar:
+# Django
 *.log
-*.sqlite3
-*.db
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+/static/
+media/
+*.bak
+
+# PyCharm
+.idea/
+
+# VSCode
+.vscode/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Coverage reports
+.coverage
+*.coveragerc
