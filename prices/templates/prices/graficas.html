@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico de Precios</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f9; /* Mismo color de fondo que precios.html */
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .reference {
+            margin-top: 20px;
+            font-size: 12px;
+            color: gray;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <a href="{% url 'main_view' %}" class="btn btn-primary mb-3">Volver a la página principal</a>
+        <h1>Gráfico de Precios interactivo</h1>
+        <div id="chart-container">
+            {{ graph_html|safe }}
+        </div>
+        <div class="reference">
+            <p>Referencia: FAOSTAT, Crops and livestock products, Food and agriculture database</p>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const lines = document.querySelectorAll(".mpld3-line");
+        
+        lines.forEach(line => {
+            // Captura el color original del atributo "stroke"
+            const originalColor = line.getAttribute("stroke");
+            line.setAttribute("data-original-color", originalColor);  // Almacena el color original
+
+            line.addEventListener("mouseover", function() {
+                line.setAttribute("style", "stroke: orange;");  // Cambia a naranja al pasar el mouse
+            });
+            line.addEventListener("mouseout", function() {
+                // Restaura el color original al salir el mouse
+                const originalColor = line.getAttribute("data-original-color");
+                line.setAttribute("style", `stroke: ${originalColor};`);
+            });
+        });
+    });
+</script>
+</html>
