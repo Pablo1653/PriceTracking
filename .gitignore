@@ -1,0 +1,11 @@
+# Ignorar el directorio de caché de Python
+__pycache__/
+*.pyc
+
+# Ignorar el entorno virtual (venv)
+venv/
+
+# Otros archivos comunes que podrías querer ignorar:
+*.log
+*.sqlite3
+*.db
