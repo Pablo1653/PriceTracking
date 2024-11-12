@@ -53,6 +53,7 @@ def login_or_register(request):
         'form_register': form_register,
         'action': action  # Variable para controlar qué formulario mostrar
     })
+
 # Otras vistas que requieren autenticación
 @login_required
 def cultivos_en_argentina(request):
