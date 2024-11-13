@@ -15,6 +15,7 @@ psycopg2: Adaptador para conectar Django con PostgreSQL.
 
 
 Instalación
+
 Requisitos=
 Asegúrate de tener los siguientes programas instalados en tu sistema:
 
