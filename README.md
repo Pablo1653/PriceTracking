@@ -1,17 +1,21 @@
 Price Tracking
 Este proyecto es una aplicación web desarrollada con Django que permite el seguimiento y gestión de precios de commodities agrícolas, como trigo, soja, maíz y girasol. Los datos se almacenan y gestionan en una base de datos PostgreSQL. La aplicación está diseñada para mostrar los precios históricos y permitir su consulta a través de una interfaz web sencilla.
 
+
 Tecnologías utilizadas
 Django 5.1.2: Framework web utilizado para desarrollar la aplicación.
 
+
 PostgreSQL: Sistema de gestión de bases de datos utilizado para almacenar los registros de precios de productos agrícolas.
+
 
 Python 3.x: Lenguaje de programación utilizado en el desarrollo del proyecto.
 
 psycopg2: Adaptador para conectar Django con PostgreSQL.
 
+
 Instalación
-Requisitos
+Requisitos=
 Asegúrate de tener los siguientes programas instalados en tu sistema:
 
 Python 3.x
@@ -22,18 +26,20 @@ pip (gestor de paquetes de Python)
 
 Pasos para configurar el proyecto
 Clona el repositorio:
-
 bash
 git clone https://github.com/Pablo1653/PriceTracking.git
-Accede al directorio del proyecto:
 
+Accede al directorio del proyecto:
 bash
 cd PriceTracking
+
 Crea y activa un entorno virtual:
 
 bash
 python -m venv venv
 source venv/bin/activate  # En Windows usa: venv\Scripts\activate
+
+
 Instala las dependencias:
 
 bash
@@ -52,17 +58,17 @@ DATABASES = {
     }
 }
 Realiza las migraciones de la base de datos:
-
 bash
 python manage.py migrate
-Crea un superusuario para acceder al panel de administración:
 
+Crea un superusuario para acceder al panel de administración:
 bash
 python manage.py createsuperuser
-Corre el servidor de desarrollo:
 
+Corre el servidor de desarrollo:
 bash
 python manage.py runserver
+
 Vistas del Proyecto
 Este proyecto cuenta con diversas vistas para mostrar información relacionada con cultivos y precios agrícolas. Todas las vistas que requieren acceso a información privada están protegidas por autenticación, lo que garantiza que solo los usuarios autenticados puedan acceder a ellas.
 
